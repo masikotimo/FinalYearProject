@@ -81,7 +81,8 @@ def _main_(args):
             
             try:
                 video_writer.write(np.uint8(image))
-                x=len(boxes)
+                x=x+len(boxes)
+                print(len(boxes), 'boxes are found')
 
             except TypeError:
                 print("cant write")
