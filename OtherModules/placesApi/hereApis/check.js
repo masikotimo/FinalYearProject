@@ -13,7 +13,7 @@ var map = new H.Map(
   document.getElementById("mapContainer"),
   maptypes.vector.normal.map,
   {
-    zoom: 10,
+    zoom: 17,
     center: { lat: 0.347596, lng: 32.58252 },
   }
 );

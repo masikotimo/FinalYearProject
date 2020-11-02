@@ -68,17 +68,28 @@ def _main_(args):
         frame_w = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
 
         video_writer = cv2.VideoWriter(video_out,
-                               cv2.VideoWriter_fourcc(*'MPEG'), 
+                               cv2.VideoWriter_fourcc(*'mp4v'), 
                                50.0, 
                                (frame_w, frame_h))
 
+        x=0
         for i in tqdm(range(nb_frames)):
             _, image = video_reader.read()
             
             boxes = yolo.predict(image)
             image = draw_boxes(image, boxes, config['model']['labels'])
+            
+            try:
+                video_writer.write(np.uint8(image))
+                x=len(boxes)
 
-            video_writer.write(np.uint8(image))
+            except TypeError:
+                print("cant write")
+
+
+
+            
+        print(x, 'boxes are found')
 
         video_reader.release()
         video_writer.release()  

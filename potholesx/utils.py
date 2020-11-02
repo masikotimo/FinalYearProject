@@ -56,23 +56,32 @@ def bbox_iou(box1, box2):
     return float(intersect) / union
 
 def draw_boxes(image, boxes, labels):
-    image_h, image_w, _ = image.shape
+    try:
+        # image.shape
+        image_h, image_w, _ = image.shape
 
-    for box in boxes:
-        xmin = int(box.xmin*image_w)
-        ymin = int(box.ymin*image_h)
-        xmax = int(box.xmax*image_w)
-        ymax = int(box.ymax*image_h)
+        for box in boxes:
+            xmin = int(box.xmin*image_w)
+            ymin = int(box.ymin*image_h)
+            xmax = int(box.xmax*image_w)
+            ymax = int(box.ymax*image_h)
 
-        cv2.rectangle(image, (xmin,ymin), (xmax,ymax), (0,255,0), 3)
-        cv2.putText(image, 
-                    labels[box.get_label()] + ' ' + str(box.get_score()), 
-                    (xmin, ymin - 13), 
-                    cv2.FONT_HERSHEY_SIMPLEX, 
-                    1e-3 * image_h, 
-                    (0,255,0), 2)
+            cv2.rectangle(image, (xmin,ymin), (xmax,ymax), (0,255,0), 3)
+            cv2.putText(image, 
+                        labels[box.get_label()] + ' ' + str(box.get_score()), 
+                        (xmin, ymin - 13), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 
+                        1e-3 * image_h, 
+                        (0,255,0), 2)
         
-    return image          
+        return image
+        
+    except AttributeError:
+        print("shape not found")
+
+
+
+              
         
 def decode_netout(netout, anchors, nb_class, obj_threshold=0.3, nms_threshold=0.3):
     grid_h, grid_w, nb_box = netout.shape[:3]
