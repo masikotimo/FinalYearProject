@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,redirect, url_for
 from flask import render_template
 from werkzeug.utils import secure_filename
 import sys
@@ -6,6 +6,7 @@ import os
 sys.path.insert(1, './potholesx')
 from predict import _main_
 
+ROOT_DIR = os.path.abspath("./uploads")
 
 UPLOAD_FOLDER = '/uploads'
 
@@ -32,7 +33,5 @@ def upload_file():
       f.save(secure_filename(f.filename))
       new_path = os.path.abspath(filename)
       potholes= _main_(new_path)
-    #   f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-
+      f.save(os.path.join(ROOT_DIR, filename))
       return  'Hey {} pothole(s) been detected!'.format(str (potholes))
