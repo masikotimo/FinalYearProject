@@ -7,8 +7,12 @@ from keras.applications.mobilenet import MobileNet
 from keras.applications import InceptionV3
 from keras.applications.vgg16 import VGG16
 from keras.applications.resnet50 import ResNet50
+import os
 
-FULL_YOLO_BACKEND_PATH  = "full_yolo_backend.h5"   # should be hosted on a server
+ROOT_DIR = os.path.abspath("./potholesx")
+FULL_YOLO_BACKEND_PATH = os.path.join(ROOT_DIR, "full_yolo_backend.h5")
+
+# FULL_YOLO_BACKEND_PATH  = "full_yolo_backend.h5"   # should be hosted on a server
 TINY_YOLO_BACKEND_PATH  = "tiny_yolo_backend.h5"   # should be hosted on a server
 SQUEEZENET_BACKEND_PATH = "squeezenet_backend.h5"  # should be hosted on a server
 MOBILENET_BACKEND_PATH  = "mobilenet_backend.h5"   # should be hosted on a server

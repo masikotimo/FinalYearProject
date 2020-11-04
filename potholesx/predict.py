@@ -13,6 +13,12 @@ import json
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
+# ROOT_DIR = os.path.abspath("./")
+ROOT_DIR = os.path.abspath("./potholesx")
+configPath = os.path.join(ROOT_DIR, "config.json")
+weightPath = os.path.join(ROOT_DIR, "weights/trained_wts.h5")
+
+
 argparser = argparse.ArgumentParser(
     description='Train and validate YOLO_v2 model on any dataset')
 
@@ -32,9 +38,11 @@ argparser.add_argument(
     help='path to an image or an video (mp4 format)')
 
 def _main_(args):
-    config_path  = args.conf
-    weights_path = args.weights
-    image_path   = args.input
+    config_path  = configPath
+    weights_path = weightPath
+    # image_path   = args.input
+    image_path   = args
+
 
     with open(config_path) as config_buffer:    
         config = json.load(config_buffer)
@@ -86,13 +94,11 @@ def _main_(args):
             except TypeError:
                 print("cant write")
 
-
-
-            
         print(x, 'boxes are found')
 
         video_reader.release()
-        video_writer.release()  
+        video_writer.release()
+        return x  
     else:
         image = cv2.imread(image_path)
         boxes = yolo.predict(image)
@@ -101,6 +107,8 @@ def _main_(args):
         print(len(boxes), 'boxes are found')
 
         cv2.imwrite(image_path[:-4] + '_detected' + image_path[-4:], image)
+
+        return len(boxes)
 
 if __name__ == '__main__':
     args = argparser.parse_args()
