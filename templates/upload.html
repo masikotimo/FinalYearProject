@@ -4,6 +4,10 @@
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
-      </form>   
+      </form> 
+      <hr>
+    {% for file in files %}
+      <img src="{{ url_for('viewFiles', filename=file) }}" style="width: 200px;height:100px; ">
+    {% endfor %}  
    </body>
 </html>
