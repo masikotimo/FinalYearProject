@@ -5,7 +5,8 @@ logs/
 results/
 temp/
 test/
-
+videos/
+potholesx/video
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
