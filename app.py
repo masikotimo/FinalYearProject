@@ -1,8 +1,11 @@
-from flask import Flask,request,redirect, url_for,abort,send_from_directory
+from flask import Flask,request,redirect, url_for,abort,send_from_directory,session
 from flask import render_template
 from werkzeug.utils import secure_filename
 import sys
 import os
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+import re
 sys.path.insert(1, './potholesx')
 from predict import _main_
 
@@ -11,7 +14,20 @@ ROOT_DIR = os.path.abspath("./uploads")
 UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
+
+app.debug = True
+app.secret_key = 'your secret key'
+
+# Enter your database connection details below
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'timothy'
+app.config['MYSQL_PASSWORD'] = 'mickeygerman1'
+app.config['MYSQL_DB'] = 'Finalyear'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Intialize MySQL
+mysql = MySQL(app)
 
 @app.route('/')
 def hello_world():
@@ -44,3 +60,70 @@ def upload_file():
 def viewFiles(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+     # Output message if something goes wrong...
+    msg = ''
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM Users WHERE Username = %s AND Password = %s', (username, password,))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+        # If account exists in accounts table in out database
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['id'] = account['ID']
+            session['username'] = account['Username']
+            # Redirect to home page
+            return 'Logged in successfully!'
+        else:
+            # Account doesnt exist or username/password incorrect
+            msg = 'Incorrect username/password!'
+    
+     # Show the login form with message (if any)
+    return render_template('index.html', msg=msg)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # Output message if something goes wrong...
+    msg = ''
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        # Create variables for easy access
+        
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM Users WHERE username = %s', (username,))
+        account = cursor.fetchone()
+        # If account exists show error and validation checks
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form!'
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            cursor.execute('INSERT INTO Users (Firstname,Lastname,Username,Email,Password) VALUES (%s, %s,%s, %s, %s)', (firstname,lastname, username, password, email,))
+            mysql.connection.commit()
+            msg = 'You have successfully registered!'
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    # Show registration form with message (if any)
+    return render_template('register.html', msg=msg)
