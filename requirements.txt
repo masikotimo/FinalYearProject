@@ -94,6 +94,7 @@ Pygments==2.5.2
 pyparsing==2.4.7
 pyrsistent==0.16.1
 pytest==4.6.11
+pytest-cov==2.10.1
 pytest-splinter==3.3.0
 python-dateutil==2.8.1
 python-resize-image==1.1.19
