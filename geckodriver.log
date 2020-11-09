@@ -1,0 +1,72 @@
+1604917497070	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.g1x7ZFonzc6U"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604917500756	Marionette	INFO	Listening on port 36055
+1604917500820	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604917501365	Marionette	INFO	Stopped listening on port 36055
+console.error: services.settings: 
+  main/nimbus-desktop-experiments Signature failed  TypeError: NetworkError when attempting to fetch resource.
+1604917540623	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.lDWstPXkg6OG"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 271: NS_ERROR_FAILURE: Should pass a non-null uri
+1604917543454	Marionette	INFO	Listening on port 41543
+1604917543563	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604917543999	Marionette	INFO	Stopped listening on port 41543
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+1604917641141	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.oTn2zM7NYts9"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604917643901	Marionette	INFO	Listening on port 40055
+1604917643987	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604917649015	Marionette	INFO	Stopped listening on port 40055
+1604917864675	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.eLS2Lz0jzF0v"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604917867455	Marionette	INFO	Listening on port 45221
+1604917867522	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604917874692	Marionette	INFO	Stopped listening on port 45221
+console.error: services.settings: 
+  main/whats-new-panel Signature failed  TypeError: NetworkError when attempting to fetch resource.
+1604917984108	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.zFE1JVUxzlsI"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604917987121	Marionette	INFO	Listening on port 43511
+1604917987166	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604917989532	Marionette	INFO	Stopped listening on port 43511
+console.error: services.settings: 
+  main/fxmonitor-breaches Signature failed  TypeError: NetworkError when attempting to fetch resource.
+1604918024184	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.DSknErQMrb7P"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604918026963	Marionette	INFO	Listening on port 43063
+1604918027025	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604918027313	Marionette	INFO	Stopped listening on port 43063
+console.error: services.settings: 
+  main/nimbus-desktop-experiments Signature failed  TypeError: NetworkError when attempting to fetch resource.
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+console.error: services.settings: 
+  main/message-groups Signature failed  TypeError: NetworkError when attempting to fetch resource.
+1604918458522	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.1hrVnIEsfHhn"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604918461322	Marionette	INFO	Listening on port 38859
+1604918461372	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604918465781	Marionette	INFO	Stopped listening on port 38859
+1604924565977	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.6wxmwqqMPzxX"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604924568839	Marionette	INFO	Listening on port 43579
+1604924568909	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 697))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+1604924659974	Marionette	INFO	Stopped listening on port 43579
+1604924840895	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.XZtl2zoBSeMj"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604924843990	Marionette	INFO	Listening on port 33851
+1604924844042	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604924848140	Marionette	INFO	Stopped listening on port 33851
+1604924892869	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.vxjK2mDmsGc5"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604924895630	Marionette	INFO	Listening on port 34925
+1604924895742	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604924899967	Marionette	INFO	Stopped listening on port 34925
+1604925457658	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.36nImCnKOnA0"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1604925460465	Marionette	INFO	Listening on port 36281
+1604925460508	Marionette	WARN	TLS certificate errors will be ignored for this session
+1604925465651	Marionette	INFO	Stopped listening on port 36281
