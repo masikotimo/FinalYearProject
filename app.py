@@ -8,6 +8,7 @@ import MySQLdb.cursors
 import re
 import pymysql
 from fpdf import FPDF
+sys.stdout.encoding
 
 
 sys.path.insert(1, './potholesx')
@@ -140,17 +141,15 @@ def upload_form():
 
 @app.route('/download/report/pdf')
 def download_report():
-    conn = None
-    cursor = None
+    
     pdf = FPDF()
     try:
-        conn = mysql.connect()
+       
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
         cursor.execute(
             "SELECT emp_id, emp_first_name, emp_last_name, emp_designation FROM employee")
         result = cursor.fetchall()
-
         
         pdf.add_page()
 
@@ -179,10 +178,10 @@ def download_report():
 
         pdf.set_font('Times', '', 10.0)
         pdf.cell(page_width, 0.0, '- end of report -', align='C')
-        # pdf.output('employee.pdf', 'F')
+        pdf.output('Reports/employee.pdf', 'F')
 
     except Exception as e:
         print(e)
     finally:
-        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=employee_report.pdf'})
+        return Response(pdf.output(name = 'timo' ,dest='S'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=employee_report.pdf'})
 
