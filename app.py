@@ -1,4 +1,4 @@
-from flask import Flask,request,redirect, url_for,abort,send_from_directory,session
+from flask import Flask,request,redirect, url_for,abort,send_from_directory,session,Response
 from flask import render_template
 from werkzeug.utils import secure_filename
 import sys
@@ -6,6 +6,10 @@ import os
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import pymysql
+from fpdf import FPDF
+
+
 sys.path.insert(1, './potholesx')
 from predict import _main_
 
@@ -125,3 +129,60 @@ def register():
         msg = 'Please fill out the form!'
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
+
+
+
+# generating reports
+
+@app.route('/generate')
+def upload_form():
+    return render_template('generate.html')
+
+@app.route('/download/report/pdf')
+def download_report():
+    conn = None
+    cursor = None
+    pdf = FPDF()
+    try:
+        conn = mysql.connect()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+        cursor.execute(
+            "SELECT emp_id, emp_first_name, emp_last_name, emp_designation FROM employee")
+        result = cursor.fetchall()
+
+        
+        pdf.add_page()
+
+        page_width = pdf.w - 2 * pdf.l_margin
+
+        pdf.set_font('Times', 'B', 14.0)
+        pdf.cell(page_width, 0.0, 'Employee Data', align='C')
+        pdf.ln(10)
+
+        pdf.set_font('Courier', '', 12)
+
+        col_width = page_width/4
+
+        pdf.ln(1)
+
+        th = pdf.font_size
+
+        for row in result:
+            pdf.cell(col_width, th, str(row['emp_id']), border=1)
+            pdf.cell(col_width, th, row['emp_first_name'], border=1)
+            pdf.cell(col_width, th, row['emp_last_name'], border=1)
+            pdf.cell(col_width, th, row['emp_designation'], border=1)
+            pdf.ln(th)
+
+        pdf.ln(10)
+
+        pdf.set_font('Times', '', 10.0)
+        pdf.cell(page_width, 0.0, '- end of report -', align='C')
+        # pdf.output('employee.pdf', 'F')
+
+    except Exception as e:
+        print(e)
+    finally:
+        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=employee_report.pdf'})
+
