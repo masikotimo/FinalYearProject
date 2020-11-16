@@ -35,8 +35,16 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mysql = MySQL(app)
 
 @app.route('/')
-def hello_world():
-    return 'hey you dashboard'
+def Home_page():
+    return render_template('index.html')
+
+@app.route('/reports')
+def reports_page():
+    return render_template('reports.html')
+
+# @app.route('/')
+# def Home_page():
+#     return render_template('index.html')
 
 @app.route('/traffic')
 def hello():
@@ -90,7 +98,7 @@ def login():
             msg = 'Incorrect username/password!'
     
      # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 
 @app.route('/register', methods=['GET', 'POST'])
