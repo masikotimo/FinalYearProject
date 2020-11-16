@@ -36,15 +36,22 @@ mysql = MySQL(app)
 
 @app.route('/')
 def Home_page():
-    return render_template('index.html')
+    return render_template('Home.html')
+
+@app.route('/traffic-analysis')
+def traffic_analysis():
+    return render_template('TrafficAnalysis.html')
+
+@app.route('/pothole-detection')
+def pothole_detection():
+    return render_template('PotHoleDetection.html')
 
 @app.route('/reports')
 def reports_page():
     return render_template('reports.html')
 
-# @app.route('/')
-# def Home_page():
-#     return render_template('index.html')
+
+# backend routes
 
 @app.route('/traffic')
 def hello():
