@@ -12,6 +12,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/style.css">
 
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <link rel="stylesheet" href="../static/autoComplete.css">
+
 </head>
 
 <body>
@@ -131,6 +137,48 @@
               </div>
             </div>
           </div>
+
+          <div class="pac-card" id="pac-card">
+            <div>
+              <div id="title">
+                Autocomplete search
+              </div>
+              <div id="type-selector" class="pac-controls">
+                <input
+                  type="radio"
+                  name="type"
+                  id="changetype-all"
+                  checked="checked"
+                />
+                <label for="changetype-all">All</label>
+      
+                <input type="radio" name="type" id="changetype-establishment" />
+                <label for="changetype-establishment">Establishments</label>
+      
+                <input type="radio" name="type" id="changetype-address" />
+                <label for="changetype-address">Addresses</label>
+      
+                <input type="radio" name="type" id="changetype-geocode" />
+                <label for="changetype-geocode">Geocodes</label>
+              </div>
+              <div id="strict-bounds-selector" class="pac-controls">
+                <input type="checkbox" id="use-strict-bounds" value="" />
+                <label for="use-strict-bounds">Strict Bounds</label>
+              </div>
+            </div>
+            <div id="pac-container">
+              <input id="pac-input" type="text" placeholder="Enter a location" />
+            </div>
+          </div>
+          <div id="map"></div>
+          <div id="pano"></div>
+          <div id="infowindow-content">
+            <img src="" width="16" height="16" id="place-icon" />
+            <span id="place-name" class="title"></span><br />
+            <span id="place-address"></span>
+          </div>
+
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -139,6 +187,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script src="../static/js/style.js"></script>
+
+    <script type="text/javascript" src="../static/checkPlaceAutoComplete.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUs1pU8GcowyEpa_-zLt8JIupXOznc6xw&libraries=places&callback=initMap"
+      async
+      defer
+    ></script>
    
 </body>
 
