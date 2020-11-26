@@ -44,7 +44,8 @@ def traffic_analysis():
 
 @app.route('/pothole-detection')
 def pothole_detection():
-    return render_template('PotHoleDetection.html')
+    files = os.listdir(ROOT_DIR)
+    return render_template('PotHoleDetection.html',files=files)
 
 @app.route('/reports')
 def reports_page():
@@ -71,8 +72,11 @@ def upload_file():
       new_path = os.path.join(ROOT_DIR, filename)
       print(new_path)
       potholes= _main_(new_path)
-    #   return  'Hey {} pothole(s) been detected!'.format(str (potholes))
-      return redirect(url_for('upload'))
+      message='No potholes Detected'
+      if potholes>=1:
+          message='Potholes Detected'
+          return  render_template('PotHoleDetection.html',message=message)
+      return render_template('PotHoleDetection.html',message=message)
 
 
 
