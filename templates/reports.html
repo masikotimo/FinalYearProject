@@ -89,8 +89,7 @@
         <!-- Page Content  -->
       
 <div id="content1">
-            <h5 class="mb-5"><span class="brown">Analyze</span> Image or Footage</h5>
-            <h5>Download Report</h5>
+            <h5 class="mb-5"><span class="brown">Generate</span> Report</h5>
             <p class="text-muted">Zip contains image & word doc</p>
               <form>
                   <div class="d-flex mb-4">
@@ -101,8 +100,8 @@
                   </div>
                 </a>
                   </div>
-                  <a href="Downloads/1.zip" download>
-                <button type="button" class="btn btn-primary mb-2">Download</button>
+                  <!-- <a href="Downloads/1.zip" download> -->
+                <button type="button" class="btn btn-primary mb-2"><a  href="{{ url_for('.download_report') }}">Download Here</a></button>
             </a>
             </form>
         </div>
