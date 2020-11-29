@@ -54,6 +54,9 @@ def reports_page():
 
 @app.route('/email')
 def send_Email():
+    return render_template('Email.html')
+
+def Email():
     sendEmail()
     return render_template('Email.html')
 
