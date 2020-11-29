@@ -12,12 +12,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/style.css">
 
-    <script
-      type="text/javascript"
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    ></script>
-    <link rel="stylesheet" href="../static/autoComplete.css">
-
 </head>
 
 <body>
@@ -25,46 +19,46 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-          <div class="sidebar-header">
-              <h3>
-                      <i class="fas fa-bars"></i>
-                  DashBoard</h3>
-              
-          </div>
+            <div class="sidebar-header">
+                <h3>
+                        <i class="fas fa-bars"></i>
+                    DashBoard</h3>
+                
+            </div>
 
-          <ul class="list-unstyled components">
-              <li>
-                  <a href="/">
-                      <i class="fas fa-home"></i>
-                      Home
-                  </a>  
-              </li>
-              <li>
-                  <a href="/traffic-analysis">
-                    <i class="fas fa-signal"></i>
-                      Traffic Analysis
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>  
+                </li>
+                <li>
+                    <a href="/traffic-analysis">
+                      <i class="fas fa-signal"></i>
+                        Traffic Analysis
+                    </a>
+                </li>
+                <li>
+                  <a href="/pothole-detection">
+                      <i class="fas fa-road"></i>
+                      PotHole Detection
                   </a>
               </li>
               <li>
-                <a href="/pothole-detection">
-                    <i class="fas fa-road"></i>
-                    PotHole Detection
+                <a href="./reports">
+                  <i class="fas fa-file"></i>
+                    Reports
                 </a>
             </li>
             <li>
-              <a href="./reports">
-                <i class="fas fa-file"></i>
-                  Reports
+              <a href="./email">
+                <i class="fas fa-paper-plane"></i>
+                  Email
               </a>
           </li>
-          <li>
-            <a href="./email">
-              <i class="fas fa-paper-plane"></i>
-                Email
-            </a>
-        </li>
-          </ul>
-      </nav>
+            </ul>
+        </nav>
 
         <!-- Page Content Holder -->
         <div id="content">
@@ -102,6 +96,8 @@
       
 <div id="content1">
             <h5 class="mb-5"><span class="brown">Analyze</span> Image or Footage</h2>
+            <button type="button" class="btn btn-primary mb-2"><a  href="{{ url_for('send_Email') }}">Send Email</a></button>
+
                
         </div>
         </div>
@@ -143,48 +139,6 @@
               </div>
             </div>
           </div>
-
-          <div class="pac-card" id="pac-card">
-            <div>
-              <div id="title">
-                Autocomplete search
-              </div>
-              <div id="type-selector" class="pac-controls">
-                <input
-                  type="radio"
-                  name="type"
-                  id="changetype-all"
-                  checked="checked"
-                />
-                <label for="changetype-all">All</label>
-      
-                <input type="radio" name="type" id="changetype-establishment" />
-                <label for="changetype-establishment">Establishments</label>
-      
-                <input type="radio" name="type" id="changetype-address" />
-                <label for="changetype-address">Addresses</label>
-      
-                <input type="radio" name="type" id="changetype-geocode" />
-                <label for="changetype-geocode">Geocodes</label>
-              </div>
-              <div id="strict-bounds-selector" class="pac-controls">
-                <input type="checkbox" id="use-strict-bounds" value="" />
-                <label for="use-strict-bounds">Strict Bounds</label>
-              </div>
-            </div>
-            <div id="pac-container">
-              <input id="pac-input" type="text" placeholder="Enter a location" />
-            </div>
-          </div>
-          <div id="map"></div>
-          <div id="pano"></div>
-          <div id="infowindow-content">
-            <img src="" width="16" height="16" id="place-icon" />
-            <span id="place-name" class="title"></span><br />
-            <span id="place-address"></span>
-          </div>
-
-
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -193,13 +147,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script src="../static/js/style.js"></script>
-
-    <script type="text/javascript" src="../static/checkPlaceAutoComplete.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUs1pU8GcowyEpa_-zLt8JIupXOznc6xw&libraries=places&callback=initMap"
-      async
-      defer
-    ></script>
    
 </body>
 

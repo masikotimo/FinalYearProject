@@ -9,6 +9,7 @@ import re
 import pymysql
 from fpdf import FPDF
 sys.stdout.encoding
+from Reports.SendReports import sendEmail
 
 
 sys.path.insert(1, './potholesx')
@@ -50,6 +51,11 @@ def pothole_detection():
 @app.route('/reports')
 def reports_page():
     return render_template('reports.html')
+
+@app.route('/email')
+def send_Email():
+    sendEmail()
+    return render_template('Email.html')
 
 
 # backend routes
