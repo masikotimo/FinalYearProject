@@ -86,3 +86,10 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 1604927249170	Marionette	INFO	Listening on port 43131
 1604927249289	Marionette	WARN	TLS certificate errors will be ignored for this session
 1604927274084	Marionette	INFO	Stopped listening on port 43131
+1606377694075	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.60RAiwR5vZfA"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606377703680	Marionette	INFO	Listening on port 35397
+1606377703727	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606377704399	Marionette	INFO	Stopped listening on port 35397
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 376))

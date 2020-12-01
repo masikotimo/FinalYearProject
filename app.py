@@ -53,11 +53,17 @@ def reports_page():
     return render_template('reports.html')
 
 @app.route('/email')
-def send_Email():
+def email_page():
+    
     return render_template('Email.html')
 
-def Email():
-    sendEmail()
+@app.route('/sendemail')
+def send_Email():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT Email FROM Users WHERE Role = 1 ')
+
+    for x in cursor.fetchall():
+        sendEmail(x)
     return render_template('Email.html')
 
 

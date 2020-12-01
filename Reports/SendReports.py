@@ -7,29 +7,27 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
 
-subject = "System Reports "
-body = "This is an email with attachment sent from Python"
-sender_email = "mickeygerman1@gmail.com"
-receiver_email = "masikotimo@gmail.com"
-password = "mickeygerman1"
 
-# Create a multipart message and set headers
-message = MIMEMultipart()
-message["From"] = sender_email
-message["To"] = receiver_email
-message["Subject"] = subject
-message["Bcc"] = receiver_email  # Recommended for mass emails
 
-# Add body to email
-message.attach(MIMEText(body, "plain"))
-
-# cwd=os.getcwd()
-# files=os.listdir(cwd)
-# print('files in %r:%s' %(cwd,files))
 
 filename = "Reports/employee.pdf"  # In same directory as script
 
-def sendEmail():
+def sendEmail(email):
+    subject = "System Reports "
+    body = "This is an email with attachment sent from Python"
+    sender_email = "mickeygerman1@gmail.com"
+    receiver_email = email['Email']
+    password = "mickeygerman1"
+
+    # Create a multipart message and set headers
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = receiver_email
+    message["Subject"] = subject
+    message["Bcc"] = receiver_email  # Recommended for mass emails
+
+    # Add body to email
+    message.attach(MIMEText(body, "plain"))
     with open(filename, "rb") as attachment:
         
         part = MIMEBase("application", "octet-stream")
