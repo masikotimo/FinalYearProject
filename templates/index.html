@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="../static/login.css">
+    <title>Login Form</title>
+</head>
+<body>
+    <img class="wave" src="../static/frontendImages/wave.png"/>
+    <div class="container">
+        <div class="img">
+            <img src="../static/frontendImages/road.svg"/>
+        </div>
+        <div class="login-container">
+            <form action="{{ url_for('login') }}" method="post">
+                <img class="avatar" src="../static/frontendImages/avatar.svg"/>
+                <h2>Welcome</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="">
+                        <h5>Username</h5>
+                        <input class="input" name="username" type="text"/>
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="">
+                        <h5>Password</h5>
+                        <input class="input" name="password" type="password"/>
+                    </div>
+                </div>
+                <div class="msg">{{ msg }}</div>
+                <a href="#">Forgot Password?</a>
+                <input type="submit" class="btn" value="Login"/>
+            </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../static/js/login.js"></script>
+</html>

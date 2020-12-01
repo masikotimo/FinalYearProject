@@ -36,26 +36,48 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mysql = MySQL(app)
 
 @app.route('/')
-def Home_page():
-    return render_template('Home.html')
+def index_page():
+    return render_template('index.html')
+
+@app.route('/Home')
+def home_page():
+    if 'loggedin' in session:
+        return render_template('Home.html', username=session['username'])
+    
+    return redirect(url_for('index_page'))
 
 @app.route('/traffic-analysis')
 def traffic_analysis():
-    return render_template('TrafficAnalysis.html')
+    if 'loggedin' in session:
+        return render_template('TrafficAnalysis.html', username=session['username'])
+    
+    return redirect(url_for('index_page'))
+
+
 
 @app.route('/pothole-detection')
 def pothole_detection():
-    files = os.listdir(ROOT_DIR)
-    return render_template('PotHoleDetection.html',files=files)
+    if 'loggedin' in session:
+        files = os.listdir(ROOT_DIR)
+        return render_template('PotHoleDetection.html', username=session['username'],files=files)
+    
+    return redirect(url_for('index_page'))
+    
 
 @app.route('/reports')
 def reports_page():
-    return render_template('reports.html')
+    if 'loggedin' in session:
+        return render_template('reports.html', username=session['username'])
+    
+    return redirect(url_for('index_page'))
 
 @app.route('/email')
 def email_page():
+    if 'loggedin' in session:
+        return render_template('Email.html', username=session['username'])
     
-    return render_template('Email.html')
+    return redirect(url_for('index_page'))
+    
 
 @app.route('/sendemail')
 def send_Email():
@@ -66,12 +88,19 @@ def send_Email():
         sendEmail(x)
     return render_template('Email.html')
 
+@app.route('/logout')
+def logout():
+    # Remove session data, this will log the user out
+   session.pop('loggedin', None)
+   session.pop('id', None)
+   session.pop('username', None)
+   # Redirect to login page
+   return redirect(url_for('index_page'))
+
+
 
 # backend routes
 
-@app.route('/traffic')
-def hello():
-    return render_template('placesApi/placeAutoComplete.html')
 
 @app.route('/upload')
 def upload():
@@ -99,7 +128,7 @@ def upload_file():
 def viewFiles(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
      
     msg = ''
@@ -118,13 +147,13 @@ def login():
             session['id'] = account['ID']
             session['username'] = account['Username']
             # Redirect to home page
-            return 'Logged in successfully!'
+            return render_template('Home.html', username=session['username'])
         else:
 
             msg = 'Incorrect username/password!'
     
      # Show the login form with message (if any)
-    return render_template('login.html', msg=msg)
+    return render_template('index.html', msg=msg)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -167,12 +196,7 @@ def register():
 
 
 
-# generating reports
-
-@app.route('/generate')
-def upload_form():
-    return render_template('generate.html')
-
+# generating report
 @app.route('/download/report/pdf')
 def download_report():
     
