@@ -67,44 +67,75 @@
       </nav>
 
         <!-- Page Content Holder -->
-        <div id="content">
+              <!-- Page Content Holder -->
+              <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                            
-                            <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user" ></i>
-                                User 2020</a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">Log Out</a>
-                                    </div>
-                            </li>
-                            
-                        </ul>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+    
+                        <button type="button" id="sidebarCollapse" class="navbar-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-align-justify"></i>
+                        </button>
+    
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item">
+                                
+                                <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-user" ></i>
+                                    User 2020</a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">Log Out</a>
+                                        </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
                     </div>
+                </nav>
+    
+            <!-- Page Content  -->
+          
+            <div class="pac-card" id="pac-card">
+              <div>
+                <div id="title">
+                  Autocomplete search
                 </div>
-            </nav>
-
-        <!-- Page Content  -->
-      
-<div id="content1">
-            <h5 class="mb-5"><span class="brown">Analyze</span> Image or Footage</h2>
-               
-        </div>
-        </div>
+                <div id="type-selector" class="pac-controls">
+                  <input type="radio" name="type" id="changetype-all" checked="checked"/>
+                  <label for="changetype-all">All</label>
+        
+                  <input type="radio" name="type" id="changetype-establishment" />
+                  <label for="changetype-establishment">Establishments</label>
+        
+                  <input type="radio" name="type" id="changetype-address" />
+                  <label for="changetype-address">Addresses</label>
+        
+                  <input type="radio" name="type" id="changetype-geocode" />
+                  <label for="changetype-geocode">Geocodes</label>
+                </div>
+                <div id="strict-bounds-selector" class="pac-controls">
+                  <input type="checkbox" id="use-strict-bounds" value="" />
+                  <label for="use-strict-bounds">Strict Bounds</label>
+                </div>
+              </div>
+              <div id="pac-container">
+                <input id="pac-input" type="text" placeholder="Enter a location" />
+              </div>
+            </div>
+            <div id="map"></div>
+            <div id="pano"></div>
+            <div id="infowindow-content">
+              <img src="" width="16" height="16" id="place-icon" />
+              <span id="place-name" class="title"></span><br />
+              <span id="place-address"></span>
+            </div>
+            </div>
     </div>
     <div class="modal fade" id="imgErrModal" tabindex="-1" role="dialog" aria-labelledby="imgErrLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -144,45 +175,7 @@
             </div>
           </div>
 
-          <div class="pac-card" id="pac-card">
-            <div>
-              <div id="title">
-                Autocomplete search
-              </div>
-              <div id="type-selector" class="pac-controls">
-                <input
-                  type="radio"
-                  name="type"
-                  id="changetype-all"
-                  checked="checked"
-                />
-                <label for="changetype-all">All</label>
-      
-                <input type="radio" name="type" id="changetype-establishment" />
-                <label for="changetype-establishment">Establishments</label>
-      
-                <input type="radio" name="type" id="changetype-address" />
-                <label for="changetype-address">Addresses</label>
-      
-                <input type="radio" name="type" id="changetype-geocode" />
-                <label for="changetype-geocode">Geocodes</label>
-              </div>
-              <div id="strict-bounds-selector" class="pac-controls">
-                <input type="checkbox" id="use-strict-bounds" value="" />
-                <label for="use-strict-bounds">Strict Bounds</label>
-              </div>
-            </div>
-            <div id="pac-container">
-              <input id="pac-input" type="text" placeholder="Enter a location" />
-            </div>
-          </div>
-          <div id="map"></div>
-          <div id="pano"></div>
-          <div id="infowindow-content">
-            <img src="" width="16" height="16" id="place-icon" />
-            <span id="place-name" class="title"></span><br />
-            <span id="place-address"></span>
-          </div>
+          
 
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
