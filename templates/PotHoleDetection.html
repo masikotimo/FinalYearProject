@@ -2,173 +2,200 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Pothole Detection</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/styles/style.css">
+  <title>Pothole Detection</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../static/styles/style.css">
 
 </head>
 
 <body>
-  
-    <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-          <div class="sidebar-header">
-              <h3>
-                      <i class="fas fa-bars"></i>
-                  DashBoard</h3>
-              
-          </div>
 
-          <ul class="list-unstyled components">
-              <li>
-                  <a href="/Home">
-                      <i class="fas fa-home"></i>
-                      Home
-                  </a>  
-              </li>
-              <li>
-                  <a href="/traffic-analysis">
-                    <i class="fas fa-signal"></i>
-                      Traffic Analysis
-                  </a>
-              </li>
-              <li>
-                <a href="/pothole-detection">
-                    <i class="fas fa-road"></i>
-                    PotHole Detection
-                </a>
-            </li>
-            <li>
-              <a href="./reports">
-                <i class="fas fa-file"></i>
-                  Reports
-              </a>
-          </li>
-          <li>
-            <a href="./email">
-              <i class="fas fa-paper-plane"></i>
-                Email
-            </a>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>
+          <i class="fas fa-bars"></i>
+          DashBoard</h3>
+
+      </div>
+
+      <ul class="list-unstyled components">
+        <li>
+          <a href="/Home">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
         </li>
-          </ul>
+        <li>
+          <a href="/traffic-analysis">
+            <i class="fas fa-signal"></i>
+            Traffic Analysis
+          </a>
+        </li>
+        <li>
+          <a href="/pothole-detection">
+            <i class="fas fa-road"></i>
+            PotHole Detection
+          </a>
+        </li>
+        <li>
+          <a href="./reports">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+        </li>
+        <li>
+          <a href="./email">
+            <i class="fas fa-paper-plane"></i>
+            Email
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+          <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item">
+
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <i class="fas fa-user"></i>
+                  {{username}}</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">Log Out</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
       </nav>
 
-        <!-- Page Content Holder -->
-        <div id="content">
+      <!-- Page Content  -->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+      <div id="content1">
+        <h5 class="mb-5"><span class="brown">Analyze</span> Image or Footage</h2>
+          <form class="">
 
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
+            <div class="form-group mb-2" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
+              <label>Name of area</label><br>
+              <input type="text" name='Area' class="form-control mr-2 mb-2" id="staticEmail2">
+              <label>Paved</label><br>
+              <input type="text" name='Paved' class="form-control mr-2 mb-2" id="staticEmail2">
+              <label>Traffic</label><br>
+              <input type="text" name='Traffic' class="form-control mr-2 mb-2" id="staticEmail2">
+              <label>Traffic Flow</label><br>
+              <input type="text" name='Traffic-flow' class="form-control mr-2 mb-2" id="staticEmail2">
+              <label>Number of lanes</label><br>
+              <input type="text" name='Lanes' class="form-control mr-2 mb-2" id="staticEmail2">
+              
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                            
-                            <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user" ></i>
-                                {{username}}</a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">Log Out</a>
-                                    </div>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            </div>
+            <label>Analyse Media</label><br>
+            <div class="image-upload">
+              <div class="image-upload-icon-container ">
+                <img id="imgInput" src="../static/frontendImages/photo.png" alt="">
+                <p class="mx-auto" id="msg">Drag and Drop<br> or Upload here</p>
+              </div>
+              <input type="file" name="file" id="imgUpload" class="mb-2" accept=".png, .jpg, .jpeg, .mp4"
+                onchange="validateImage()" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Analyze</button>
+          </form>
+          
 
-        <!-- Page Content  -->
-      
-<div id="content1">
-            <h5 class="mb-5"><span class="brown">Analyze</span> Image or Footage</h2>
-                <label>Name of area</label><br>
-                <form class="form-inline">
-                    <div class="form-group mb-2">
-                        <input type="text" class="form-control mr-2 mb-2" id="staticEmail2">
-                        <button type="submit" class="btn btn-primary mb-2">Save</button>
-                    </div>
-                </form>
-                <form class="image-upload" action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data" >
-                        
-                    <div class="image-upload-icon-container ">
-                      <img id="imgInput" src="../static/frontendImages/photo.png" alt="">
-                      <p class="mx-auto" id="msg">Drag and Drop<br> or Upload here</p>
-                    </div>
-                    <input type="file" name = "file" id="imgUpload" class="mb-2" accept=".png, .jpg, .jpeg, .mp4" onchange="validateImage()"/>
-                    <button type="submit" class="btn btn-primary mb-2">Analyze</button>
-                  </form>
+          <h5 style="margin-top: 80px;">{{ message }}</h2>
 
-                  <h5 style="margin-top: 80px;">{{ message }}</h2>
-
-                  {% for file in files %}
-                  <img src="{{ url_for('viewFiles', filename=file) }}" style="width: 200px;height:100px; ">
-                {% endfor %}
-        </div>
-        </div>
-
-      
+            {% for file in files %}
+            <img src="{{ url_for('viewFiles', filename=file) }}" style="width: 200px;height:100px; ">
+            {% endfor %}
+      </div>
     </div>
-    <div class="modal fade" id="imgErrModal" tabindex="-1" role="dialog" aria-labelledby="imgErrLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="imgErrLabel">Error</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                Only jpg/jpeg and png files are allowed!
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-submit" data-dismiss="modal">Dismiss</button>
-            </div>
-          </div>
+
+
+  </div>
+  <div class="modal fade" id="imgErrModal" tabindex="-1" role="dialog" aria-labelledby="imgErrLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imgErrLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Only jpg/jpeg and png files are allowed!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-submit" data-dismiss="modal">Dismiss</button>
         </div>
       </div>
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Log Out</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Are you sure you want to log out?</p>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" type="submit"> <a  href="{{ url_for('logout') }}">Yes</a></button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                </div>
-              </div>
-            </div>
-          </div>
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    </div>
+  </div>
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Log Out</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to log out?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit"> <a href="{{ url_for('logout') }}">Yes</a></button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
 
-    <script src="../static/js/style.js"></script>
-   
+  <script src="../static/js/style.js"></script>
+
 </body>
 
 </html>
