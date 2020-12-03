@@ -105,19 +105,27 @@
       <div id="content1">
         <h5 class="mb-5"><span class="brown">Enter</span> Details</h2>
           <form class="" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
-
-            <div class="form-group mb-2" >
+            <div class="form-group mb-2">
               <label>Name of area</label><br>
               <input type="text" name='Area' class="form-control mr-2 mb-2" id="staticEmail2">
               <label>Paved</label><br>
-              <input type="text" name='Paved' class="form-control mr-2 mb-2" id="staticEmail2">
+              <select name="Paved" class="form-control mr-2 mb-2" id="staticEmail2">
+                <option value=""></option>
+                <option value="Gravel">Gravel</option>
+                <option value="Earth">Earth</option>
+              </select>
               <label>Traffic</label><br>
-              <input type="text" name='Traffic' class="form-control mr-2 mb-2" id="staticEmail2">
+              <select name="Traffic" class="form-control mr-2 mb-2" id="staticEmail2">
+                <option value=""></option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
               <label>Traffic Flow</label><br>
               <input type="text" name='Traffic-flow' class="form-control mr-2 mb-2" id="staticEmail2">
               <label>Number of lanes</label><br>
               <input type="text" name='Lanes' class="form-control mr-2 mb-2" id="staticEmail2">
-              
+
 
             </div>
             <label>Analyse Media</label><br>
@@ -131,7 +139,7 @@
             </div>
             <button type="submit" class="btn btn-primary mb-2">Analyze</button>
           </form>
-          
+
 
           <h5 style="margin-top: 80px;">{{ message }}</h2>
 
