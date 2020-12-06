@@ -57,12 +57,16 @@
 					  Email
 					</a>
 				  </li>
-                <li>
-                  <a href="./register">
-                    <i class="fas fa-users"></i>
-                    Register User
-                  </a>
-                </li>
+				  {% block content %}
+				  {% if role %}
+				  <li>
+					<a href="./register">
+					  <i class="fas fa-users"></i>
+					  Register User
+					</a>
+				  </li>
+				  {% endif %}
+				  {% endblock content %}
             </ul>
         </nav>
 

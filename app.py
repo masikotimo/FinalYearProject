@@ -46,7 +46,7 @@ def index_page():
 @app.route('/Home')
 def home_page():
     if 'loggedin' in session:
-        return render_template('Home.html', username=session['username'])
+        return render_template('Home.html', username=session['username'],role=session['role'])
 
     return redirect(url_for('index_page'))
 
@@ -167,6 +167,7 @@ def login():
             session['loggedin'] = True
             session['id'] = account['ID']
             session['username'] = account['Username']
+            session['role'] = account['Role']
             # Redirect to home page
             return render_template('Home.html', username=session['username'])
         else:
