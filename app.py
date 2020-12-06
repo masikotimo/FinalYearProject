@@ -182,6 +182,9 @@ def register():
 
     msg = ''
 
+    if 'loggedin' not in session:
+        return render_template('index.html', msg=msg)
+
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
         # Create variables for easy access
 
@@ -215,7 +218,7 @@ def register():
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
     # Show registration form with message (if any)
-    return render_template('register.html', msg=msg)
+    return render_template('register.html', msg=msg,username=session['username'])
 
 
 # generating report
