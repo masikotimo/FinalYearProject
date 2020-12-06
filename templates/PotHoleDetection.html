@@ -57,11 +57,17 @@
           </a>
         </li>
         <li>
-          <a href="./email">
-            <i class="fas fa-paper-plane"></i>
-            Email
-          </a>
-        </li>
+					<a href="./email">
+					  <i class="fas fa-paper-plane"></i>
+					  Email
+					</a>
+				  </li>
+                <li>
+                  <a href="./register">
+                    <i class="fas fa-users"></i>
+                    Register User
+                  </a>
+                </li>
       </ul>
     </nav>
 
@@ -105,39 +111,67 @@
       <div id="content1">
         <h5 class="mb-5"><span class="brown">Enter</span> Details</h2>
           <form class="" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
-            <div class="form-group mb-2">
-              <label>Name of area</label><br>
-              <input type="text" name='Area' class="form-control mr-2 mb-2" id="staticEmail2">
-              <label>Paved</label><br>
-              <select name="Paved" class="form-control mr-2 mb-2" id="staticEmail2">
-                <option value=""></option>
-                <option value="Gravel">Gravel</option>
-                <option value="Earth">Earth</option>
-              </select>
-              <label>Traffic</label><br>
-              <select name="Traffic" class="form-control mr-2 mb-2" id="staticEmail2">
-                <option value=""></option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-              <label>Traffic Flow</label><br>
-              <input type="text" name='Traffic-flow' class="form-control mr-2 mb-2" id="staticEmail2">
-              <label>Number of lanes</label><br>
-              <input type="text" name='Lanes' class="form-control mr-2 mb-2" id="staticEmail2">
-
-
+            <div class="col-lg-6">
+                <div class="form-group">
+                <label>Name of area</label>
+                <input class="form-control" type="text" name='Area'/>
+                </div>
             </div>
-            <label>Analyse Media</label><br>
-            <div class="image-upload">
-              <div class="image-upload-icon-container ">
-                <img id="imgInput" src="../static/frontendImages/photo.png" alt="">
-                <p class="mx-auto" id="msg">Drag and Drop<br> or Upload here</p>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+              <label>Paved</label>
+              <select name="Paved" class="form-control" id="staticEmail2">
+                <option class="customOption" value=""></option>
+                <option class="customOption" value="Gravel">Gravel</option>
+                <option class="customOption" value="Earth">Earth</option>
+              </select>
               </div>
-              <input type="file" name="file" id="imgUpload" class="mb-2" accept=".png, .jpg, .jpeg, .mp4"
-                onchange="validateImage()" />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+            <label>Traffic</label>
+            <select name="Traffic" class="form-control" id="staticEmail2">
+              <option class="customOption" value=""></option>
+              <option class="customOption" value="High">High</option>
+              <option class="customOption" value="Medium">Medium</option>
+              <option class="customOption" value="Low">Low</option>
+            </select>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Analyze</button>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="form-group">
+          <label>Traffic Flow</label>
+          <input class="form-control" type="text"  name='Traffic-flow' />
+          </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group">
+        <label>Number of lanes</label>
+        <input class="form-control" type="text"  name='Lanes' />
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="form-group">
+      <label>Analyse Media</label>
+      <div class="image-upload">
+        <div class="image-upload-icon-container ">
+          <img id="imgInput" src="../static/frontendImages/photo.png" alt="">
+          <p class="mx-auto" id="msg">Drag and Drop<br> or Upload here</p>
+        </div>
+        <input type="file" name="file" id="imgUpload" class="mb-2" accept=".png, .jpg, .jpeg, .mp4"
+          onchange="validateImage()" />
+      </div>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Analyze</button>
+ 
+    </div>  
+           
+            
           </form>
 
 

@@ -190,6 +190,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        role = request.form['Role']
 
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -206,8 +207,8 @@ def register():
             msg = 'Please fill out the form!'
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
-            cursor.execute('INSERT INTO Users (Firstname,Lastname,Username,Email,Password) VALUES (%s, %s,%s, %s, %s)',
-                           (firstname, lastname, username, password, email,))
+            cursor.execute('INSERT INTO Users (Firstname,Lastname,Username,Email,Password,Role) VALUES (%s, %s,%s, %s, %s, %s)',
+                           (firstname, lastname, username,email, password, role))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
     elif request.method == 'POST':
