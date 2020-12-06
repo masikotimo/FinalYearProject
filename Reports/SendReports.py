@@ -10,7 +10,7 @@ import os
 
 
 
-filename = "Reports/employee.pdf"  # In same directory as script
+filename = "Reports/Report.pdf"  # In same directory as script
 
 def sendEmail(email):
     subject = "System Reports "
@@ -34,7 +34,7 @@ def sendEmail(email):
         part.set_payload(attachment.read())
 
     encoders.encode_base64(part)
-    part.add_header('Content-Disposition', 'attachment', filename=filename)
+    part.add_header('Content-Disposition', 'attachment', filename='Report.pdf')
 
     message.attach(part)
     text = message.as_string()

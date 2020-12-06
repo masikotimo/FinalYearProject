@@ -227,7 +227,7 @@ def download_report():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
         cursor.execute(
-            "SELECT emp_id, emp_first_name, emp_last_name, emp_designation FROM employee")
+            "SELECT Area, Paved, Traffic, Traffic_Flow,Pothole FROM RoadDetails")
         result = cursor.fetchall()
 
         pdf.add_page()
@@ -235,31 +235,32 @@ def download_report():
         page_width = pdf.w - 2 * pdf.l_margin
 
         pdf.set_font('Times', 'B', 14.0)
-        pdf.cell(page_width, 0.0, 'Employee Data', align='C')
+        pdf.cell(page_width, 0.0, 'Road Details', align='C')
         pdf.ln(10)
 
-        pdf.set_font('Courier', '', 12)
+        pdf.set_font('Courier', '', 10)
 
-        col_width = page_width/4
+        col_width = page_width/5
 
         pdf.ln(1)
 
         th = pdf.font_size
 
         for row in result:
-            pdf.cell(col_width, th, str(row['emp_id']), border=1)
-            pdf.cell(col_width, th, row['emp_first_name'], border=1)
-            pdf.cell(col_width, th, row['emp_last_name'], border=1)
-            pdf.cell(col_width, th, row['emp_designation'], border=1)
+            pdf.cell(col_width, th, row['Area'], border=1)
+            pdf.cell(col_width, th, row['Paved'], border=1)
+            pdf.cell(col_width, th, row['Traffic'], border=1)
+            pdf.cell(col_width, th, row['Traffic_Flow'], border=1)
+            pdf.cell(col_width, th, row['Pothole'], border=1)
             pdf.ln(th)
 
         pdf.ln(10)
 
         pdf.set_font('Times', '', 10.0)
         pdf.cell(page_width, 0.0, '- end of report -', align='C')
-        pdf.output('Reports/employee.pdf', 'F')
+        pdf.output('Reports/Report.pdf', 'F')
 
     except Exception as e:
         print(e)
     finally:
-        return Response(pdf.output(name='timo', dest='S'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=employee_report.pdf'})
+        return Response(pdf.output(name='timo', dest='S'), mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=Report.pdf'})
