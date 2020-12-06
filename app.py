@@ -169,7 +169,9 @@ def login():
             session['username'] = account['Username']
             session['role'] = account['Role']
             # Redirect to home page
-            return render_template('Home.html', username=session['username'])
+            return redirect(url_for('home_page',username=session['username']))
+
+            # return render_template('Home.html', username=session['username'])
         else:
 
             msg = 'Incorrect username/password!'
