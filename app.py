@@ -54,7 +54,7 @@ def home_page():
 @app.route('/traffic-analysis')
 def traffic_analysis():
     if 'loggedin' in session:
-        return render_template('TrafficAnalysis.html', username=session['username'])
+        return render_template('TrafficAnalysis.html', username=session['username'],role=session['role'])
 
     return redirect(url_for('index_page'))
 
@@ -63,7 +63,7 @@ def traffic_analysis():
 def pothole_detection():
     if 'loggedin' in session:
         files = os.listdir(ROOT_DIR)
-        return render_template('PotHoleDetection.html', username=session['username'], files=files)
+        return render_template('PotHoleDetection.html', username=session['username'], files=files,role=session['role'])
 
     return redirect(url_for('index_page'))
 
@@ -71,7 +71,7 @@ def pothole_detection():
 @app.route('/reports')
 def reports_page():
     if 'loggedin' in session:
-        return render_template('reports.html', username=session['username'])
+        return render_template('reports.html', username=session['username'],role=session['role'])
 
     return redirect(url_for('index_page'))
 
@@ -79,7 +79,7 @@ def reports_page():
 @app.route('/email')
 def email_page():
     if 'loggedin' in session:
-        return render_template('Email.html', username=session['username'])
+        return render_template('Email.html', username=session['username'],role=session['role'])
 
     return redirect(url_for('index_page'))
 
