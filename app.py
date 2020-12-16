@@ -1,5 +1,5 @@
 
-from Reports.SendReports import sendEmail
+from Reports.SendReports import sendEmail,sendPassword
 from flask import Flask, request, redirect, url_for, abort, send_from_directory, session, Response
 from flask import render_template
 from werkzeug.utils import secure_filename
@@ -217,11 +217,13 @@ def register():
                            (firstname, lastname, username,email, password, role))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
+
+            sendPassword(email,password)
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
     # Show registration form with message (if any)
-    return render_template('register.html', msg=msg,username=session['username'])
+    return render_template('register.html', msg=msg,username=session['username'],role=session['role'])
 
 
 # generating report
@@ -252,6 +254,12 @@ def download_report():
         pdf.ln(1)
 
         th = pdf.font_size
+        pdf.cell(col_width, th, 'Area', border=1)
+        pdf.cell(col_width, th, 'Paved', border=1)
+        pdf.cell(col_width, th, 'Traffic', border=1)
+        pdf.cell(col_width, th, 'Traffic_Flow', border=1)
+        pdf.cell(col_width, th, 'Pothole', border=1)
+        pdf.ln(th)
 
         for row in result:
             pdf.cell(col_width, th, row['Area'], border=1)
@@ -260,6 +268,17 @@ def download_report():
             pdf.cell(col_width, th, row['Traffic_Flow'], border=1)
             pdf.cell(col_width, th, row['Pothole'], border=1)
             pdf.ln(th)
+        
+        pdf.ln(5)
+        pdf.write(5, 'Areas that require attention :')
+        pdf.ln(5)
+        
+
+        for row in result:
+            if row['Pothole']=='Potholes Detected':
+                pdf.write(5, '%s'%(row['Area']) )
+                pdf.ln(5)
+        
 
         pdf.ln(10)
 
