@@ -60,15 +60,7 @@ def sendPassword(email,password):
 
     # Add body to email
     message.attach(MIMEText(body, "plain"))
-    with open(filename, "rb") as attachment:
-        
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read())
 
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', 'attachment', filename='Report.pdf')
-
-    message.attach(part)
     text = message.as_string()
 
     server = smtplib.SMTP_SSL("smtp.gmail.com", 465 )
