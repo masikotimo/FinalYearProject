@@ -64,6 +64,8 @@ function initMap() {
     infowindow.close();
     marker.setVisible(false);
     var place = autocomplete.getPlace();
+    var long_name =place.address_components[0].long_name
+    localStorage.setItem("currentplace", long_name);
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.

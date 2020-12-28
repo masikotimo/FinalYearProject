@@ -1,3 +1,5 @@
+document.getElementById("Name_of_Area").value = localStorage.getItem("currentplace");
+
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
