@@ -9,6 +9,9 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
 import pymysql
+import pandas as pd
+import matplotlib
+from pylab import title, figure, xlabel, ylabel, xticks, bar, legend, axis, savefig
 from fpdf import FPDF
 sys.stdout.encoding
 
@@ -230,6 +233,30 @@ def register():
 @app.route('/download/report/pdf')
 def download_report():
 
+    df = pd.DataFrame()
+    df['Question'] = ["Traffic", "Q2", "Q3", "Q4"]
+    df['Charles'] = [3, 4, 5, 3]
+    df['Mike'] = [3, 3, 4, 4]
+
+    title("Road Chat")
+    xlabel('Question Number')
+    ylabel('Score')
+
+    c = [2.0, 4.0, 6.0, 8.0]
+    m = [x - 0.5 for x in c]
+
+    xticks(c, df['Question'])
+
+    bar(m, df['Mike'], width=0.5, color="#91eb87", label="Mike")
+    bar(c, df['Charles'], width=0.5, color="#eb879c", label="Charles")
+
+    legend()
+    axis([0, 10, 0, 8])
+    savefig('barchart.png')
+
+
+
+
     pdf = FPDF()
     try:
 
@@ -244,11 +271,14 @@ def download_report():
         page_width = pdf.w - 2 * pdf.l_margin
 
         pdf.set_font('Times', 'B', 14.0)
-        pdf.cell(page_width, 0.0, 'Road Details', align='C')
+        pdf.set_text_color(255,0,0)
+        pdf.cell(page_width, 0.0, 'Kampala City Council Authority Road Report', align='C')
+        pdf.ln(5)
+        pdf.set_font('Courier', '', 10)
+        pdf.cell(page_width, 0.0, 'For A Better City', align='C')
         pdf.ln(10)
 
-        pdf.set_font('Courier', '', 10)
-
+        pdf.set_text_color(0,0,0)
         col_width = page_width/5
 
         pdf.ln(1)
@@ -270,6 +300,9 @@ def download_report():
             pdf.ln(th)
         
         pdf.ln(5)
+
+        pdf.image('barchart.png', x = None, y = None, w = 100, h = 100, type = '', link = '')
+
         pdf.write(5, 'Areas that require attention :')
         pdf.ln(5)
         
