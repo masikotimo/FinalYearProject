@@ -254,12 +254,23 @@ def download_report():
     # legend()
     # axis([0, 10, 0, 8])
     # savefig('barchart.png')
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    sizes = []
 
+    cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Gravel'")
+    result_gravel = cursor.fetchall()
+    gravel=result_gravel[0]['count']
+    sizes.append(gravel)
+    cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Earth'")
+    result_earth = cursor.fetchall()
+    earth=result_earth[0]['count']
+
+    sizes.append(earth)
 
     
     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
     labels =  'Gravel','Earth'
-    sizes = [15, 30]
+    
     explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
     fig1, ax1 = plt.subplots()
