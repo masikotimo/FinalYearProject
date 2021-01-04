@@ -11,6 +11,7 @@ import re
 import pymysql
 import pandas as pd
 import matplotlib
+import matplotlib.pyplot as plt
 from pylab import title, figure, xlabel, ylabel, xticks, bar, legend, axis, savefig
 from fpdf import FPDF
 sys.stdout.encoding
@@ -233,26 +234,40 @@ def register():
 @app.route('/download/report/pdf')
 def download_report():
 
-    df = pd.DataFrame()
-    df['Question'] = ["Traffic", "Q2", "Q3", "Q4"]
-    df['Charles'] = [3, 4, 5, 3]
-    df['Mike'] = [3, 3, 4, 4]
+    # df = pd.DataFrame()
+    # df['Question'] = ["Traffic", "Q2", "Q3", "Q4"]
+    # df['Charles'] = [3, 4, 5, 3]
+    # df['Mike'] = [3, 3, 4, 4]
 
-    title("Road Chat")
-    xlabel('Question Number')
-    ylabel('Score')
+    # title("Road Chat")
+    # xlabel('Question Number')
+    # ylabel('Score')
 
-    c = [2.0, 4.0, 6.0, 8.0]
-    m = [x - 0.5 for x in c]
+    # c = [2.0, 4.0, 6.0, 8.0]
+    # m = [x - 0.5 for x in c]
 
-    xticks(c, df['Question'])
+    # xticks(c, df['Question'])
 
-    bar(m, df['Mike'], width=0.5, color="#91eb87", label="Mike")
-    bar(c, df['Charles'], width=0.5, color="#eb879c", label="Charles")
+    # bar(m, df['Mike'], width=0.5, color="#91eb87", label="Mike")
+    # bar(c, df['Charles'], width=0.5, color="#eb879c", label="Charles")
 
-    legend()
-    axis([0, 10, 0, 8])
-    savefig('barchart.png')
+    # legend()
+    # axis([0, 10, 0, 8])
+    # savefig('barchart.png')
+
+
+    
+    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+    labels =  'Gravel','Earth'
+    sizes = [15, 30]
+    explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    savefig('piechart.png')
 
 
 
@@ -301,16 +316,38 @@ def download_report():
         
         pdf.ln(5)
 
-        pdf.image('barchart.png', x = None, y = None, w = 100, h = 100, type = '', link = '')
+        pdf.image('piechart.png', x = None, y = None, w = 100, h = 100, type = '', link = '')
 
-        pdf.write(5, 'Areas that require attention :')
+        
+        pdf.write(5, 'Areas that are both Gravel and with potholes  :')
         pdf.ln(5)
         
 
         for row in result:
-            if row['Pothole']=='Potholes Detected':
+            if row['Pothole']=='Potholes Detected' and row['Paved']=='Gravel' :
                 pdf.write(5, '%s'%(row['Area']) )
                 pdf.ln(5)
+
+        pdf.write(5, 'Areas that are both Earth and with potholes  :')
+        pdf.ln(5)
+
+        for row in result:
+            if row['Pothole']=='Potholes Detected' and row['Paved']=='Earth' :
+                pdf.write(5, '%s'%(row['Area']) )
+                pdf.ln(5)
+            
+
+        pdf.write(5, 'Areas with High Traffic, Earth and potholes  :')
+        pdf.ln(5)
+
+        for row in result:
+            if row['Pothole']=='Potholes Detected' and row['Paved']=='Earth' and row['Traffic']=='High' :
+                pdf.write(5, '%s'%(row['Area']) )
+                pdf.ln(5)
+            
+                
+
+
         
 
         pdf.ln(10)
