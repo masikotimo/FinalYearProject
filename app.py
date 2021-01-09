@@ -19,6 +19,7 @@ sys.stdout.encoding
 
 sys.path.insert(1, './potholesx')
 from predict import _main_
+from run import predictTraffic
 
 
 ROOT_DIR = os.path.abspath("./uploads")
@@ -122,22 +123,32 @@ def upload_file():
     if request.method == 'POST':
         area = request.form['Area']
         paved = request.form['Paved']
-        traffic = request.form['Traffic']
+        
         traffic_flow = request.form['Traffic-flow']
         f = request.files['file']
-        filename = secure_filename(f.filename)
+        traffic = request.files['Traffic_file']
+
+        filenamePotholes = secure_filename(f.filename)
+        filenametraffic = secure_filename(traffic.filename)
         f.save('uploads/'+secure_filename(f.filename))
-        new_path = os.path.join(ROOT_DIR, filename)
+        traffic.save('uploads/'+secure_filename(traffic.filename))
+        new_path = os.path.join(ROOT_DIR, filenamePotholes)
+        traffic_path = os.path.join(ROOT_DIR, filenametraffic)
         print(new_path)
+        print(traffic_path)
         potholes = _main_(new_path)
         pothole_message = 'No potholes Detected'
         if potholes >= 1:
             pothole_message = 'Potholes Detected'
 
+
+        congestion_type=predictTraffic(traffic_path)
+        
+
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
         cursor.execute('INSERT INTO RoadDetails (Area,Paved,Traffic,Traffic_Flow,Pothole) VALUES (%s, %s,%s, %s, %s)',
-                       (area, paved, traffic, traffic_flow, pothole_message,))
+                       (area, paved, congestion_type, traffic_flow, pothole_message,))
         mysql.connection.commit()
         msg = 'Details submitted successfully !'
 
