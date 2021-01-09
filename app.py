@@ -234,51 +234,32 @@ def register():
 @app.route('/download/report/pdf')
 def download_report():
 
-    # df = pd.DataFrame()
-    # df['Question'] = ["Traffic", "Q2", "Q3", "Q4"]
-    # df['Charles'] = [3, 4, 5, 3]
-    # df['Mike'] = [3, 3, 4, 4]
+    
+    # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    # sizes = []
 
-    # title("Road Chat")
-    # xlabel('Question Number')
-    # ylabel('Score')
+    # cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Gravel'")
+    # result_gravel = cursor.fetchall()
+    # gravel=result_gravel[0]['count']
+    # sizes.append(gravel)
+    # cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Earth'")
+    # result_earth = cursor.fetchall()
+    # earth=result_earth[0]['count']
 
-    # c = [2.0, 4.0, 6.0, 8.0]
-    # m = [x - 0.5 for x in c]
-
-    # xticks(c, df['Question'])
-
-    # bar(m, df['Mike'], width=0.5, color="#91eb87", label="Mike")
-    # bar(c, df['Charles'], width=0.5, color="#eb879c", label="Charles")
-
-    # legend()
-    # axis([0, 10, 0, 8])
-    # savefig('barchart.png')
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    sizes = []
-
-    cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Gravel'")
-    result_gravel = cursor.fetchall()
-    gravel=result_gravel[0]['count']
-    sizes.append(gravel)
-    cursor.execute("SELECT COUNT(*) AS count FROM RoadDetails WHERE Paved = 'Earth'")
-    result_earth = cursor.fetchall()
-    earth=result_earth[0]['count']
-
-    sizes.append(earth)
+    # sizes.append(earth)
 
     
-    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-    labels =  'Gravel','Earth'
+    # # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+    # labels =  'Gravel','Earth'
     
-    explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+    # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
-    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    # fig1, ax1 = plt.subplots()
+    # ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+    #         shadow=True, startangle=90)
+    # ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-    savefig('piechart.png')
+    # savefig('piechart.png')
 
 
 
@@ -325,6 +306,9 @@ def download_report():
             pdf.cell(col_width, th, row['Pothole'], border=1)
             pdf.ln(th)
         
+        pdf.ln(5)
+
+        pdf.write(5, 'Piechart showing classification  of Roads in % ')
         pdf.ln(5)
 
         pdf.image('piechart.png', x = None, y = None, w = 100, h = 100, type = '', link = '')
