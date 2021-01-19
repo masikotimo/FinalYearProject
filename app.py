@@ -290,10 +290,10 @@ def download_report():
 
         pdf.set_font('Times', 'B', 14.0)
         pdf.set_text_color(255,0,0)
-        pdf.cell(page_width, 0.0, 'Kampala City Council Authority Road Report', align='C')
+        pdf.cell(page_width, 0.0, 'Kampala City Council Authority Road Report', align='L')
         pdf.ln(5)
         pdf.set_font('Courier', '', 10)
-        pdf.cell(page_width, 0.0, 'For A Better City', align='C')
+        pdf.cell(page_width, 0.0, 'For A Better City', align='L')
         pdf.ln(10)
 
         pdf.set_text_color(0,0,0)
@@ -301,13 +301,17 @@ def download_report():
 
         pdf.ln(1)
 
-        th = pdf.font_size
+        th = 5
+        pdf.set_font('Courier', 'B', 10)
         pdf.cell(col_width, th, 'Area', border=1)
         pdf.cell(col_width, th, 'Paved', border=1)
         pdf.cell(col_width, th, 'Traffic', border=1)
         pdf.cell(col_width, th, 'Traffic_Flow', border=1)
         pdf.cell(col_width, th, 'Pothole', border=1)
         pdf.ln(th)
+
+        pdf.set_font('Courier', '', 10)
+
 
         for row in result:
             pdf.cell(col_width, th, row['Area'], border=1)
@@ -324,23 +328,40 @@ def download_report():
 
         pdf.image('piechart.png', x = None, y = None, w = 100, h = 100, type = '', link = '')
 
+
+        pdf.set_font('Times', 'B', 14.0)
+        pdf.set_text_color(255,0,0)
+        pdf.cell(page_width, 0.0, 'Advisory Report', align='L')
+        pdf.ln(5)
+        pdf.set_text_color(0,0,0)
+        pdf.set_font('Courier', '', 10)
+
         
-        pdf.write(5, 'Areas that are both Gravel and with potholes  :')
+        pdf.write(5, 'Areas that are both Gravel and with potholes and high traffic :')
         pdf.ln(5)
         
 
         for row in result:
-            if row['Pothole']=='Potholes Detected' and row['Paved']=='Gravel' :
+            if row['Pothole']=='Potholes Detected' and row['Paved']=='Gravel' and row['Traffic']=='High' :
                 pdf.write(5, '%s'%(row['Area']) )
                 pdf.ln(5)
+        
+        pdf.set_text_color(255,0,0)
+        pdf.write(5, 'Recommendation: The road should urgently be maintained in order to handle the current traffic capacity.')
+        pdf.set_text_color(0,0,0)
+        pdf.ln(15)
+        # pdf.write(5, 'Areas that are both Earth and with potholes  :')
+        # pdf.ln(5)
 
-        pdf.write(5, 'Areas that are both Earth and with potholes  :')
-        pdf.ln(5)
-
-        for row in result:
-            if row['Pothole']=='Potholes Detected' and row['Paved']=='Earth' :
-                pdf.write(5, '%s'%(row['Area']) )
-                pdf.ln(5)
+        # for row in result:
+        #     if row['Pothole']=='Potholes Detected' and row['Paved']=='Earth' :
+        #         pdf.write(5, '%s'%(row['Area']) )
+        #         pdf.ln(5)
+        
+        # pdf.set_text_color(255,0,0)
+        # pdf.write(5, 'Recommendation: maintain  :')
+        # pdf.set_text_color(0,0,0)
+        # pdf.ln(5)
             
 
         pdf.write(5, 'Areas with High Traffic, Earth and potholes  :')
@@ -350,13 +371,42 @@ def download_report():
             if row['Pothole']=='Potholes Detected' and row['Paved']=='Earth' and row['Traffic']=='High' :
                 pdf.write(5, '%s'%(row['Area']) )
                 pdf.ln(5)
-            
-                
+
+        pdf.set_text_color(255,0,0)
+        pdf.write(5, 'Recommendation: A road should be constructed in the analyzed areas to improve the traffic capacity ')
+        pdf.set_text_color(0,0,0)
+
+        pdf.ln(20)
+
+        pdf.write(5, 'Areas with High Traffic, paved and no potholes  :')
+        pdf.ln(5)
+
+        for row in result:
+            if row['Pothole'] !='Potholes Detected' and row['Paved']=='Gravel' and row['Traffic']=='High' :
+                pdf.write(5, '%s'%(row['Area']) )
+                pdf.ln(5)
+        pdf.set_text_color(255,0,0)
+        pdf.write(5, 'Recommendation: The road in the analyzed areas should be widened and maintaned to lower the traffic conjestion')
+        pdf.set_text_color(0,0,0)
+        pdf.ln(15)
 
 
-        
 
-        pdf.ln(10)
+        pdf.write(5, 'Areas with no potholes,not  paved and Traffic not High  :')
+        pdf.ln(5)
+
+        for row in result:
+            if row['Pothole'] !='Potholes Detected' and row['Paved']=='Earth' and row['Traffic']!='High' :
+                pdf.write(5, '%s'%(row['Area']) )
+                pdf.ln(5)
+        pdf.set_text_color(255,0,0)
+        pdf.write(5, 'Recommendation: The road should be noted and monitored for future purposes of road construction')
+        pdf.set_text_color(0,0,0)
+        pdf.ln(5)
+
+
+
+
 
         pdf.set_font('Times', '', 10.0)
         pdf.cell(page_width, 0.0, '- end of report -', align='C')
